@@ -125,7 +125,7 @@ export default function Home() {
     <>
       <div className="flex justify-center items-center min-h-screen">
         <div className="p-5 w-96">
-          <h1 className="text-3xl font-extrabold mb-10">Death Counter</h1>
+          <h1 className="text-3xl font-extrabold mb-10 text-white">Death Counter</h1>
           <div className="mb-5"></div>
           <div className="text-start">
             {counters.map((counter) => (
@@ -138,25 +138,25 @@ export default function Home() {
                     &#x2716;
                   </button>
                 ) : null}
-                <div className="font-extrabold my-auto flex">
+                <div className="font-extrabold my-auto flex text-white">
                   {counter.label}:
                 </div>
                 <div className="flex justify-end w-full">
                   {isEdit ? (
                     <button
                       onClick={() => decrementCounter(counter.id)}
-                      className="w-10 h-10 my-auto text-lg mr-2 cursor-pointer bg-red-600 rounded-md active:bg-red-700 hover:bg-red-500 transition"
+                      className="w-10 h-10 my-auto text-lg mr-2 text-white cursor-pointer bg-red-600 rounded-md active:bg-red-700 hover:bg-red-500 transition"
                     >
                       -
                     </button>
                   ) : null}
-                  <div className="w-12 h-12 bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2">
+                  <div className="w-12 h-12 text-white bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2">
                     {counter.value}
                   </div>
                   {isEdit ? (
                     <button
                       onClick={() => incrementCounter(counter.id)}
-                      className="w-10 h-10 my-auto text-lg cursor-pointer bg-green-600 rounded-md active:bg-green-700 hover:bg-green-500 transition"
+                      className="w-10 h-10 my-auto text-white text-lg cursor-pointer bg-green-600 rounded-md active:bg-green-700 hover:bg-green-500 transition"
                     >
                       +
                     </button>
@@ -183,7 +183,7 @@ export default function Home() {
                 </div>
                 <div className="flex">
                   <button
-                    className="px-5 py-2 bg-blue-600 rounded-full hover:bg-blue-500 active:bg-blue-700 transition mt-10 mx-auto"
+                    className="px-5 py-2 bg-blue-600 rounded-full text-white hover:bg-blue-500 active:bg-blue-700 transition mt-10 mx-auto"
                     onClick={() => {
                       setIsEdit(false);
                       window.scrollTo(0, 0);
@@ -198,7 +198,7 @@ export default function Home() {
         </div>
       </div>
       {errorMessage ? (
-        <div className="bg-red-500 bg-opacity-50 p-2 flex justify-center w-fit mx-auto rounded-full">
+        <div className="bg-red-500 bg-opacity-50 p-2 flex justify-center text-white w-fit mx-auto rounded-full">
           {errorMessage}
         </div>
       ) : null}
@@ -209,7 +209,7 @@ export default function Home() {
         }}
       >
         <input
-          className="flex mx-auto mb-10 mt-5 text-slate-200 bg-slate-800 border-none p-2 rounded-full pl-4 outline-none"
+          className="flex mx-auto mb-10 mt-5 text-slate-200 bg-slate-800 border-none text-white p-2 rounded-full pl-4 outline-none"
           placeholder="Password"
           type="password"
           value={password || ""}
