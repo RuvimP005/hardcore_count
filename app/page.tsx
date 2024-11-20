@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchCounters();
-    }, 10000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
