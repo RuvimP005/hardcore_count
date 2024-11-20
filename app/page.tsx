@@ -135,10 +135,10 @@ export default function Home() {
       <Image
         src={Brody}
         alt="Brody"
-        className={`w-[25vw] absolute`}
+        className={`w-[20vh] h-[20vh] absolute z-50`}
         style={{
-          left: `${Math.floor(Math.random() * 75)}vw`,
-          top: `${Math.floor(Math.random() * 67)}vh`,
+          left: `${Math.floor(Math.random() * 81)}vw`,
+          top: `${Math.floor(Math.random() * 81)}vh`,
         }}
       />
       <div className="flex justify-center items-center min-h-screen">
@@ -172,7 +172,7 @@ export default function Home() {
                         -
                       </button>
                     ) : null}
-                    <div className="w-12 h-12 text-white bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2">
+                    <div className="w-12 h-12 text-white bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2 z-40">
                       {counter.value}
                     </div>
                     {isEdit ? (
