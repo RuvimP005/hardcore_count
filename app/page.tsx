@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import Image from "next/image";
+import Brody from "../app/IMG_0899.jpg";
 interface Counter {
   id: number;
   label: string;
@@ -131,6 +132,15 @@ export default function Home() {
 
   return (
     <>
+      <Image
+        src={Brody}
+        alt="Brody"
+        className={`w-[25vw] absolute`}
+        style={{
+          left: `${Math.floor(Math.random() * 75)}vw`,
+          top: `${Math.floor(Math.random() * 67)}vh`,
+        }}
+      />
       <div className="flex justify-center items-center min-h-screen">
         <div className="p-5 w-96">
           <h1 className="text-3xl font-extrabold mb-10 text-slate-200">
