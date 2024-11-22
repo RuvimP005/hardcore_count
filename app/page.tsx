@@ -268,7 +268,6 @@ export default function Home() {
           <h1 className="text-3xl font-extrabold mb-10 text-slate-200">
             Death Counter
           </h1>
-          <div className="mb-5"></div>
           <div className="text-start">
             {counters
               .sort((a, b) => a.value - b.value)
@@ -340,6 +339,9 @@ export default function Home() {
             ) : null}
           </div>
         </div>
+        <h1 className="text-3xl font-extrabold mb-10 text-slate-200">
+          Causes of Death
+        </h1>
         <div>
           <PieChart width={400} height={400}>
             <Pie
@@ -393,24 +395,21 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            <>
-              <div className="flex justify-center items-center">
-                <input
-                  type="text"
-                  value={newCauseName}
-                  onChange={(e) => setNewCauseName(e.target.value)}
-                  placeholder="Enter cause name"
-                  className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4"
-                />
-                <button
-                  onClick={addCause}
-                  className="h-10 w-full cursor-pointer bg-emerald-600 text-slate-200 rounded-full active:bg-emerald-700 hover:bg-emerald-500 transition"
-                >
-                  Add Cause
-                </button>
-              </div>
-              <div className="flex"></div>
-            </>
+            <div className="flex justify-center items-center">
+              <input
+                type="text"
+                value={newCauseName}
+                onChange={(e) => setNewCauseName(e.target.value)}
+                placeholder="Enter cause name"
+                className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4"
+              />
+              <button
+                onClick={addCause}
+                className="h-10 w-full cursor-pointer bg-emerald-600 text-slate-200 rounded-full active:bg-emerald-700 hover:bg-emerald-500 transition"
+              >
+                Add Cause
+              </button>
+            </div>
           </div>
         ) : null}
       </div>
