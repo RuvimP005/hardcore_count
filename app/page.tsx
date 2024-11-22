@@ -69,7 +69,7 @@ export default function Home() {
         dominantBaseline="central"
         className="text-lg font-semibold animate-fade-in opacity-0"
         style={{
-          animationDelay: "2s",
+          animationDelay: "1s",
           animationFillMode: "forwards",
         }}
       >
