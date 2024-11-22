@@ -135,10 +135,10 @@ export default function Home() {
       <Image
         src={Brody}
         alt="Brody"
-        className={`w-[20vw] h-[20vh] absolute z-50`}
+        className={`w-80 h-80 absolute z-50`}
         style={{
-          left: `${Math.floor(Math.random() * 81)}vw`,
-          top: `${Math.floor(Math.random() * 81)}vh`,
+          left: `${Math.floor(Math.random() * (window.innerWidth - 320))}px`,
+          top: `${Math.floor(Math.random() * (window.innerHeight - 320))}px`,
         }}
       />
       <div className="flex justify-center items-center min-h-screen">
