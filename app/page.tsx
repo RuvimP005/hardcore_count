@@ -135,7 +135,7 @@ export default function Home() {
       <Image
         src={Brody}
         alt="Brody"
-        className={`w-[20vh] h-[20vh] absolute z-50`}
+        className={`w-[20vw] h-[20vh] absolute z-50`}
         style={{
           left: `${Math.floor(Math.random() * 81)}vw`,
           top: `${Math.floor(Math.random() * 81)}vh`,
