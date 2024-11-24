@@ -12,6 +12,7 @@ interface Counter {
 interface Causes {
   cause: string;
   value: number;
+  color: string;
 }
 interface LabelProps {
   cx: number;
@@ -23,19 +24,7 @@ interface LabelProps {
 }
 
 const apiUrl = "https://ruvimserver.ddns.net";
-
-const COLORS = [
-  "#FF6384", // Red
-  "#36A2EB", // Blue
-  "#FFCE56", // Yellow
-  "#4BC0C0", // Teal
-  "#9966FF", // Purple
-  "#FF9F40", // Orange
-  "#E7E9ED", // Light Grey
-  "#8DD7BF", // Light Green
-  "#F67280", // Pink
-  "#6A5ACD", // Slate Blue
-];
+// const apiUrl = "http://localhost:8080";
 
 export default function Home() {
   const [counters, setCounters] = useState<Counter[]>([]);
@@ -46,6 +35,7 @@ export default function Home() {
   const [isEdit, setIsEdit] = useState(false);
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [newCauseColor, setNewCauseColor] = useState("");
 
   const renderCustomizedLabel = ({
     cx,
@@ -199,15 +189,18 @@ export default function Home() {
   };
 
   const addCause = async () => {
+    const regex = /^#[A-Fa-f0-9]{6}$/;
     if (!newCauseName.trim()) return;
-
+    if (!newCauseColor.trim()) return;
+    if (!regex.test(newCauseColor)) return;
     try {
       await fetch(`${apiUrl}/add-cause`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cause: newCauseName }),
+        body: JSON.stringify({ cause: newCauseName, color: newCauseColor }),
       });
       setNewCauseName("");
+      setNewCauseColor("");
       fetchCounters();
       fetchCauses();
     } catch (error) {
@@ -280,7 +273,7 @@ export default function Home() {
                   <div key={counter.id} className="my-10 flex">
                     {isEdit ? (
                       <button
-                        className="w-14 h-10 my-auto text-slate-200 rounded-full bg-slate-800 hover:bg-slate-700 active:bg-slate-900 mr-2 transition"
+                        className="w-14 h-10 my-auto text-slate-200 rounded-full bg-slate-700 bg-opacity-50 hover:bg-opacity-40 active:bg-opacity-60 mr-2 transition"
                         onClick={() => removePerson(counter.id)}
                       >
                         &#x2716;
@@ -298,7 +291,7 @@ export default function Home() {
                           -
                         </button>
                       ) : null}
-                      <div className="w-12 h-12 text-white bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2 z-40">
+                      <div className="w-12 h-12 text-white bg-slate-700 bg-opacity-50 rounded-md justify-center items-center flex mr-2 z-40">
                         {counter.value}
                       </div>
                       {isEdit ? (
@@ -320,7 +313,7 @@ export default function Home() {
                       value={newPersonName}
                       onChange={(e) => setNewPersonName(e.target.value)}
                       placeholder="Enter person name"
-                      className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4"
+                      className="text-slate-200 bg-slate-700 p-2 rounded-full mr-2 outline-none pl-4"
                     />
                     <button
                       onClick={addPerson}
@@ -355,13 +348,14 @@ export default function Home() {
                   dataKey="value"
                   label={renderCustomizedLabel}
                   labelLine={false}
+                  className="outline-none"
                 >
                   {causes.length >= 0
-                    ? causes.map((entry, index) => (
+                    ? causes.map((entry) => (
                         <Cell
                           key={entry.value + 1}
                           name={entry.cause}
-                          fill={COLORS[index % COLORS.length]}
+                          fill={entry.color}
                         />
                       ))
                     : null}
@@ -374,7 +368,7 @@ export default function Home() {
                 {causes.map((cause) => (
                   <div key={cause.cause} className="my-10 flex">
                     <button
-                      className="w-14 h-10 my-auto text-slate-200 rounded-full bg-slate-800 hover:bg-slate-700 active:bg-slate-900 mr-2 transition"
+                      className="w-14 h-10 my-auto text-slate-200 rounded-full bg-slate-700 bg-opacity-50 hover:bg-opacity-40 active:bg-opacity-60 mr-2 transition"
                       onClick={() => removeCause(cause.cause)}
                     >
                       &#x2716;
@@ -389,7 +383,7 @@ export default function Home() {
                       >
                         -
                       </button>
-                      <div className="w-12 h-12 text-white bg-slate-800 opacity-80 rounded-md justify-center items-center flex mr-2 z-40">
+                      <div className="w-12 h-12 text-white bg-slate-800 bg-opacity-50 rounded-md justify-center items-center flex mr-2 z-40">
                         {cause.value}
                       </div>
                       <button
@@ -402,13 +396,22 @@ export default function Home() {
                   </div>
                 ))}
                 <div className="flex justify-center items-center">
-                  <input
-                    type="text"
-                    value={newCauseName}
-                    onChange={(e) => setNewCauseName(e.target.value)}
-                    placeholder="Enter cause name"
-                    className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4"
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      value={newCauseName}
+                      onChange={(e) => setNewCauseName(e.target.value)}
+                      placeholder="Enter cause name"
+                      className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4 mb-2"
+                    />
+                    <input
+                      type="text"
+                      value={newCauseColor}
+                      onChange={(e) => setNewCauseColor(e.target.value)}
+                      placeholder="Enter color hex"
+                      className="text-slate-200 bg-slate-800 p-2 rounded-full mr-2 outline-none pl-4"
+                    />
+                  </div>
                   <button
                     onClick={addCause}
                     className="h-10 w-full cursor-pointer bg-emerald-600 text-slate-200 rounded-full active:bg-emerald-700 hover:bg-emerald-500 transition"
