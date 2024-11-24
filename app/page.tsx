@@ -107,7 +107,11 @@ export default function Home() {
     try {
       const response = await fetch(`${apiUrl}/causes`);
       const data = await response.json();
-      setCauses(data);
+      setCauses(
+        data.sort(
+          (a: { value: number }, b: { value: number }) => b.value - a.value
+        )
+      );
     } catch (error) {
       console.error("Error fetching causes:", error);
     } finally {
