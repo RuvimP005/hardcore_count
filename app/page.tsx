@@ -36,6 +36,7 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [newCauseColor, setNewCauseColor] = useState("");
+  const [brody, setBrody] = useState(true);
 
   const renderCustomizedLabel = ({
     cx,
@@ -262,6 +263,11 @@ export default function Home() {
         style={{
           left: `${Math.floor(Math.random() * (window.innerWidth - 320))}px`,
           top: `${Math.floor(Math.random() * (window.innerHeight - 320))}px`,
+        }}
+        onClick={(event: React.MouseEvent) => {
+          if (event.shiftKey) {
+            setBrody(!brody);
+          }
         }}
       />
       <div className="flex justify-center items-center min-h-screen">
