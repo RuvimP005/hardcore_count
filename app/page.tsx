@@ -263,7 +263,7 @@ export default function Home() {
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex w-fit">
           <div className="flex-1 p-5 w-96">
-            <h1 className="text-3xl font-extrabold mb-10 text-slate-200">
+            <h1 className="text-3xl font-extrabold mb-10 text-slate-200 text-center">
               Death Counter
             </h1>
             <div className="text-start">
@@ -338,7 +338,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex-1 p-5 w-96">
-            <h1 className="text-3xl font-extrabold mb-10 text-slate-200">
+            <h1 className="text-3xl font-extrabold mb-10 text-slate-200 text-center">
               Causes of Death
             </h1>
             <div>
