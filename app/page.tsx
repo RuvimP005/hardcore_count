@@ -23,7 +23,7 @@ interface LabelProps {
   value: number;
 }
 
-const apiUrl = "https://ruvimserver.ddns.net";
+const apiUrl = "https://ruvimserver.ddns.net/api";
 // const apiUrl = "http://localhost:8080";
 
 export default function Home() {
